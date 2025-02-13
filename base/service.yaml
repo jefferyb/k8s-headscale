@@ -1,0 +1,24 @@
+---
+# base/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: headscale
+  labels:
+    app.kubernetes.io/name: headscale
+    app.kubernetes.io/instance: headscale
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 9090
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    app.kubernetes.io/name: headscale
+    app.kubernetes.io/instance: headscale

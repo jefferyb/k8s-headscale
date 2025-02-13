@@ -1,0 +1,18 @@
+---
+# base/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: headscale-config
+    files:
+      - config.yaml=config-files/headscale-config.yaml
+
+  - name: headscale-acl-policy
+    files:
+      - acl-policy.hujson=config-files/acl-policy.hujson

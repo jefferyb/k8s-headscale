@@ -1,0 +1,22 @@
+---
+# base/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headscale
+  labels:
+    app.kubernetes.io/name: headscale
+    app.kubernetes.io/instance: headscale
+spec:
+  ingressClassName: nginx # Replace with your ingress controller class name if different
+  rules:
+    - host: headscale.example.com # Replace with your desired hostname
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: headscale
+                port:
+                  name: http

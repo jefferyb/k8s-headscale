@@ -1,0 +1,15 @@
+---
+# base/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: headscale-volume-pvc
+  labels:
+    app.kubernetes.io/instance: headscale
+    app.kubernetes.io/name: headscale
+spec:
+  accessModes:
+    - ReadWriteOnce # Or ReadWriteMany if needed and supported by your storage provider
+  resources:
+    requests:
+      storage: 3Gi # Adjust storage size as needed
